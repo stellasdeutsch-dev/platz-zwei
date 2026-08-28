@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PLATZ ZWEI — порядок слов в немецком</title>
+<meta name="description" content="Глагол на втором месте, рамочная конструкция, отделяемые приставки и придаточные. Порядок слов в немецком предложении — с анимацией и конструктором.">
+<link rel="icon" href="assets/favicon.png">
+<meta name="theme-color" content="#2A1E7A">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PLATZ ZWEI — порядок слов в немецком">
+<meta property="og:description" content="Глагол на втором месте. Всегда. Разбор порядка слов для тех, кто собирает немецкие предложения в русском порядке.">
+<meta property="og:image" content="assets/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ RESET ============ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+img,video{display:block;max-width:100%;height:auto}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
+
+/* ============ TOKENS ============ */
+:root{
+  --ink:#0B0B12;
+  --ink-2:#3B3B4D;
+  --gray:#83839A;
+  --paper:#FFFFFF;
+  --paper-2:#F7F6FD;
+
+  --violet-9:#2A1E7A;
+  --violet-7:#4B3BD6;
+  --violet-5:#7B6BF0;
+  --violet-3:#B3A9F8;
+  --lilac:#D9D3FD;
+  --lilac-2:#EEEBFE;
+
+  --yellow:#F3FF26;
+  --yellow-soft:#FAFFA8;
+  --pink:#FFAED6;
+  --pink-soft:#FFDCEE;
+  --mint:#8FEFC6;
+  --mint-soft:#D6FBEB;
+
+  --r-lg:36px;
+  --r-xl:52px;
+  --pad:20px;
+  --maxw:1180px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+@media (min-width:768px){:root{--pad:40px;--r-lg:46px;--r-xl:68px}}
+
+/* ============ BASE ============ */
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad);position:relative;z-index:2}
+.sec{padding-block:70px;position:relative}
+@media (min-width:768px){.sec{padding-block:112px}}
+.disp{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;line-height:.98;letter-spacing:-.01em}
+.mono{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace}
+.mono-label{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gray)}
+.lead{font-size:17px;line-height:1.6;color:var(--ink-2);max-width:62ch}
+.lead p+p{margin-top:15px}
+.lead b{color:var(--ink)}
+@media (min-width:768px){.lead{font-size:19px}}
+.story{font-size:19px;line-height:1.5;font-weight:600;max-width:22ch}
+.story p{margin-bottom:14px}
+@media (min-width:768px){.story{font-size:26px;max-width:26ch}}
+.big-state{font-size:clamp(26px,6.2vw,50px);font-weight:800;line-height:1.14;letter-spacing:-.025em;text-wrap:balance}
+.big-state em{font-style:normal;color:var(--violet-7)}
+.kicker{font-family:'Anton',sans-serif;text-transform:uppercase;color:var(--violet-3);
+  font-size:clamp(34px,9.2vw,84px);line-height:1;letter-spacing:-.005em}
+
+/* ============ REVEAL ============ */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.rv-s{opacity:0;transform:translateY(18px) scale(.975);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv-s.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .rv,.rv-s{opacity:1!important;transform:none!important;transition:none!important}
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important}
+}
+html.nofx .rv,html.nofx .rv-s,html.nofx .msg{opacity:1!important;transform:none!important;transition:none!important}
+
+/* ============ FOCUS ============ */
+:where(button,a,input,[tabindex]):focus-visible{outline:3px solid var(--violet-7);outline-offset:3px;border-radius:6px}
+
+/* ============ PROGRESS ============ */
+.prog{position:fixed;top:0;left:0;height:4px;width:0;z-index:120;
+  background:linear-gradient(90deg,var(--violet-5),var(--yellow));border-radius:0 4px 4px 0;transition:width .12s linear}
+
+/* ============ NAV ============ */
+.nav{
+  position:fixed;inset:12px 12px auto 12px;z-index:90;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:10px 12px 10px 16px;background:rgba(255,255,255,.74);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-radius:999px;box-shadow:0 6px 30px rgba(11,11,18,.12);
+  transition:transform .4s var(--ease),opacity .4s var(--ease);
+}
+.nav.hide{transform:translateY(-140%);opacity:0}
+.brand{display:flex;align-items:center;gap:9px}
+.brand img{width:24px;height:24px}
+.brand .wm{font-family:'Anton',sans-serif;font-size:17px;text-transform:uppercase;letter-spacing:.01em}
+.brand .wm i{font-style:normal;background:var(--yellow);padding:1px 6px 2px;border-radius:6px;margin-left:3px}
+.nav-links{display:none;gap:24px;font-size:14px;font-weight:600}
+.nav-links a{opacity:.62;transition:opacity .2s}
+.nav-links a:hover{opacity:1}
+.nav-cta{background:var(--ink);color:#fff;font-size:13px;font-weight:700;padding:11px 18px;border-radius:999px;
+  white-space:nowrap;transition:transform .25s var(--ease)}
+.nav-cta:hover{transform:translateY(-2px)}
+@media (min-width:940px){
+  .nav{inset:18px 24px auto 24px;padding:12px 14px 12px 22px}
+  .nav-links{display:flex}.brand .wm{font-size:20px}.brand img{width:28px;height:28px}
+}
+
+/* ============ BUTTONS ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:17px 32px;border-radius:999px;font-weight:800;font-size:16px;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .25s}
+.btn:hover{transform:translateY(-3px)}
+.btn-y{background:var(--yellow);color:var(--ink);box-shadow:0 10px 30px rgba(180,200,0,.32)}
+.btn-k{background:var(--ink);color:#fff}
+.btn-ghost{background:rgba(255,255,255,.14);color:#fff;border:2px solid rgba(255,255,255,.55)}
+.btn-ghost:hover{background:rgba(255,255,255,.26)}
+.btn-lg{padding:21px 38px;font-size:18px;width:100%}
+@media (min-width:560px){.btn-lg{width:auto}}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;
+  padding:104px 0 0;overflow:hidden;
+  background:linear-gradient(180deg,#241A6B 0%,var(--violet-7) 32%,var(--violet-5) 58%,var(--lilac) 84%,#fff 100%);
+}
+.hero-inner{position:relative;z-index:4;width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+.ghost2{
+  position:absolute;right:-14vw;top:30vh;z-index:1;pointer-events:none;
+  font-family:'Anton',sans-serif;font-size:min(78vw,680px);line-height:.8;
+  color:rgba(255,255,255,.10);animation:float2 12s ease-in-out infinite;
+}
+@keyframes float2{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-30px) rotate(2deg)}}
+.hero-wm{
+  font-family:'Anton',sans-serif;text-transform:uppercase;color:#fff;
+  font-size:clamp(52px,16.5vw,220px);line-height:.92;letter-spacing:-.02em;
+  display:flex;flex-wrap:wrap;text-shadow:0 12px 50px rgba(20,10,80,.4);
+}
+.hero-wm>span{flex:0 0 100%}
+.hero-wm span{display:inline-block;transform:translateY(112%);opacity:0;animation:rise .95s var(--ease) forwards}
+.hero-wm .y{color:var(--yellow)}
+@keyframes rise{to{transform:none;opacity:1}}
+.hero-sub{margin-top:20px;max-width:540px;color:#fff;font-size:16.5px;line-height:1.45;font-weight:500;
+  text-shadow:0 2px 16px rgba(20,10,80,.45)}
+.hero-sub b{font-weight:800}
+.hero-actions{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px}
+.hero-actions .btn{flex:1 1 auto;min-width:152px}
+.hero-stats{margin-top:26px;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;
+  background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-radius:24px;padding:16px 14px;box-shadow:0 12px 40px rgba(30,15,110,.22)}
+.hero-stats div{text-align:center}
+.hero-stats b{display:block;font-family:'Anton',sans-serif;font-size:clamp(26px,7vw,40px);line-height:1}
+.hero-stats span{display:block;font-size:10.5px;font-weight:700;color:var(--gray);line-height:1.25;margin-top:4px}
+/* дрейфующие слова */
+.drift{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden;display:none}
+@media (min-width:940px){.drift{display:block}}
+.dw{
+  position:absolute;font-family:'Inter';font-size:clamp(13px,3.4vw,17px);font-weight:800;
+  padding:9px 15px;border-radius:14px;background:rgba(255,255,255,.92);color:var(--ink);
+  box-shadow:0 8px 26px rgba(20,10,80,.28);animation:drift 14s ease-in-out infinite;white-space:nowrap;
+}
+.dw.v{background:var(--yellow)}
+@keyframes drift{0%,100%{transform:translate(0,0) rotate(-3deg)}50%{transform:translate(10px,-24px) rotate(3deg)}}
+.scroll-cue{position:relative;z-index:4;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:8px;
+  padding:20px 0;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
+.scroll-cue i{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--yellow);
+  font-style:normal;font-size:16px;animation:nudge 2s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+@media (min-width:940px){
+  .hero{padding-top:150px}
+  .hero-sub{font-size:20px;margin-top:26px}
+  .hero-actions .btn{flex:0 0 auto}
+  .hero-stats{margin-top:40px;display:flex;gap:44px;background:none;box-shadow:none;padding:0;border-radius:0;backdrop-filter:none}
+  .hero-stats div{text-align:left;color:#fff}
+  .hero-stats b{font-size:44px}
+  .hero-stats span{color:rgba(255,255,255,.9);font-size:12px}
+}
+
+/* ============ SECTION HEAD ============ */
+.sh{display:flex;align-items:baseline;gap:14px;margin-bottom:22px}
+.sh .n{font-family:'Anton',sans-serif;font-size:clamp(40px,12vw,88px);color:var(--violet-3);line-height:.9}
+.sh .t{font-size:clamp(22px,5.4vw,40px);font-weight:800;letter-spacing:-.03em;line-height:1.1;text-wrap:balance}
+
+/* ============ SATZ: слоты предложения ============ */
+.satz{
+  background:var(--lilac-2);border-radius:var(--r-lg);padding:22px 0 20px;position:relative;
+}
+.satz > *:not(.scroller):not(.klammer-wrap){margin-inline:16px}
+/* предложение — всегда одна строка: так видно позиции и работает рамка */
+.scroller,.klammer-wrap{overflow-x:auto;scrollbar-width:none;padding-inline:16px;
+  -webkit-mask-image:linear-gradient(90deg,#000 0 92%,transparent);
+  mask-image:linear-gradient(90deg,#000 0 92%,transparent);
+  scroll-behavior:smooth;-webkit-overflow-scrolling:touch;position:relative}
+.scroller::-webkit-scrollbar,.klammer-wrap::-webkit-scrollbar{display:none}
+.parts{display:flex;flex-wrap:nowrap;gap:8px;align-items:flex-start;position:relative;
+  width:max-content;min-width:100%;padding-top:11px}
+.part{flex:0 0 auto}
+.swipe-hint{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:800;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gray);margin-top:10px}
+@media (min-width:768px){.satz{padding-inline:0}.satz > *:not(.scroller):not(.klammer-wrap){margin-inline:26px}
+  .scroller,.klammer-wrap{padding-inline:26px}}
+.part{
+  position:relative;display:flex;flex-direction:column;gap:3px;
+  padding:14px 14px 12px;border-radius:16px;background:#fff;
+  box-shadow:0 3px 12px rgba(30,15,110,.08);
+  font-size:16px;font-weight:800;line-height:1.2;
+}
+.part .pos{
+  position:absolute;top:-9px;left:9px;min-width:20px;height:20px;padding:0 5px;border-radius:7px;
+  background:var(--violet-3);color:#fff;font-size:11px;font-weight:800;display:grid;place-items:center;
+  font-family:'JetBrains Mono',monospace;
+}
+.part .ru{font-size:11.5px;font-weight:600;color:var(--gray);white-space:nowrap}
+.part.verb{background:var(--yellow);box-shadow:0 6px 20px rgba(190,210,0,.4)}
+.part.verb .pos{background:var(--ink)}
+.part.verb2{background:var(--mint)}
+.part.verb2 .pos{background:#0E7A55}
+.part.subj{background:var(--lilac)}
+.part.punct{background:none;box-shadow:none;padding:14px 2px;align-self:center}
+.part.punct .pos{display:none}
+.part.pulse{animation:pulsecard 1.1s var(--ease)}
+@keyframes pulsecard{0%{box-shadow:0 0 0 0 rgba(11,11,18,.5)}70%{box-shadow:0 0 0 14px rgba(11,11,18,0)}100%{box-shadow:0 6px 20px rgba(190,210,0,.4)}}
+@media (min-width:768px){.satz{padding-block:30px 26px}.part{font-size:19px;padding:16px 18px 14px}}
+
+.variants{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.vbtn{padding:11px 16px;border-radius:999px;background:#fff;font-size:14px;font-weight:700;
+  box-shadow:0 2px 10px rgba(30,15,110,.08);transition:.25s var(--ease)}
+.vbtn[aria-pressed="true"]{background:var(--ink);color:#fff}
+.note{margin-top:16px;font-size:14px;line-height:1.5;font-weight:600;color:var(--ink-2);
+  padding-left:16px;border-left:3px solid var(--violet-3);min-height:44px}
+.note b{color:var(--ink)}
+
+/* легенда ролей */
+.roles{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.role{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;
+  padding:8px 13px;border-radius:999px;background:#fff;box-shadow:0 2px 10px rgba(30,15,110,.07)}
+.role i{width:12px;height:12px;border-radius:4px;display:block}
+.role.v i{background:var(--yellow)}
+.role.v2 i{background:var(--mint)}
+.role.s i{background:var(--lilac)}
+.role.r i{background:#EDEDF4}
+
+/* ============ РАМКА ============ */
+.klammer-wrap{padding-bottom:66px}
+.klammer{
+  position:absolute;height:34px;border:3px solid var(--ink);border-top:0;border-radius:0 0 14px 14px;
+  transform-origin:left center;transform:scaleX(0);transition:transform .9s var(--ease);
+}
+.klammer.on{transform:scaleX(1)}
+.klammer-lb{
+  display:block;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gray);margin-top:-18px;opacity:0;transition:opacity .4s .6s;
+}
+.klammer-lb.on{opacity:1}
+
+/* ============ ПРИСТАВКА ЛЕТИТ ============ */
+.flyzone{position:relative}
+.inf{display:inline-flex;align-items:stretch;border-radius:16px;overflow:hidden;
+  box-shadow:0 6px 20px rgba(30,15,110,.14);font-size:22px;font-weight:800;margin-bottom:8px}
+.inf .pre{background:var(--mint);padding:14px 16px}
+.inf .stem{background:#fff;padding:14px 16px}
+.inf .cut{width:3px;background:repeating-linear-gradient(180deg,var(--ink) 0 5px,transparent 5px 10px)}
+.ghostfly{position:fixed;z-index:70;pointer-events:none;border-radius:14px;background:var(--mint);
+  padding:14px 16px;font-size:22px;font-weight:800;box-shadow:0 12px 30px rgba(30,15,110,.3)}
+.replay{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;
+  padding:10px 16px;border-radius:999px;background:var(--ink);color:#fff;margin-top:6px}
+
+/* ============ PREFIX LISTS ============ */
+.plist{display:grid;gap:12px}
+@media (min-width:720px){.plist{grid-template-columns:1fr 1fr}}
+.pcol{border-radius:var(--r-lg);padding:22px}
+.pcol.sep{background:var(--mint-soft)}
+.pcol.insep{background:var(--pink-soft)}
+.pcol h4{font-size:17px;font-weight:800;margin-bottom:4px}
+.pcol p{font-size:13.5px;color:var(--ink-2);font-weight:600;margin-bottom:14px}
+.ptags{display:flex;flex-wrap:wrap;gap:7px}
+.ptag{padding:8px 13px;border-radius:12px;background:#fff;font-size:14px;font-weight:800;
+  font-family:'JetBrains Mono',monospace}
+
+/* ============ TEKAMOLO ============ */
+.tkml{display:grid;gap:10px}
+@media (min-width:820px){.tkml{grid-template-columns:repeat(4,1fr)}}
+.tk{border-radius:24px;padding:20px 18px;position:relative;overflow:hidden}
+.tk:nth-child(1){background:var(--lilac)}
+.tk:nth-child(2){background:var(--pink-soft)}
+.tk:nth-child(3){background:var(--yellow-soft)}
+.tk:nth-child(4){background:var(--mint-soft)}
+.tk .letter{font-family:'Anton',sans-serif;font-size:38px;line-height:.9;opacity:.35}
+.tk .q{font-size:15px;font-weight:800;margin-top:6px}
+.tk .ex{font-size:14px;font-weight:700;margin-top:8px;font-family:'JetBrains Mono',monospace}
+.tk .ru{font-size:12px;color:var(--ink-2);font-weight:600;margin-top:2px}
+
+/* ============ КОНСТРУКТОР ============ */
+.game{background:var(--ink);color:#fff;border-radius:var(--r-xl);padding:26px 20px 28px}
+@media (min-width:768px){.game{padding:40px 40px 44px}}
+.game .task{font-size:15px;font-weight:700;color:#B9B9D2;margin-bottom:4px}
+.game .ru-task{font-size:19px;font-weight:800;margin-bottom:18px;line-height:1.3}
+@media (min-width:768px){.game .ru-task{font-size:24px}}
+.slotline{min-height:64px;border-radius:18px;border:2px dashed rgba(255,255,255,.28);
+  padding:10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px;transition:border-color .3s}
+.slotline.ok{border-color:var(--mint);border-style:solid}
+.slotline.bad{animation:shake .45s}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-9px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(3px)}}
+.bank{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;min-height:48px}
+.wchip{padding:12px 15px;border-radius:14px;background:#fff;color:var(--ink);font-size:15.5px;font-weight:800;
+  transition:transform .25s var(--ease),opacity .25s}
+.wchip:hover{transform:translateY(-3px)}
+.wchip.used{opacity:.22;pointer-events:none}
+.wchip.inslot{background:var(--lilac)}
+.wchip.inslot.isverb{background:var(--yellow)}
+.game-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.gbtn{padding:12px 20px;border-radius:999px;font-size:14px;font-weight:800;background:rgba(255,255,255,.14)}
+.gbtn.primary{background:var(--yellow);color:var(--ink)}
+.verdict{font-size:14.5px;font-weight:700;line-height:1.45;margin-top:14px;min-height:44px}
+.verdict.good{color:var(--mint)}
+.verdict.bad{color:var(--pink)}
+.score{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:#9A9AB8}
+
+/* ============ ОШИБКИ ============ */
+.wrongright{display:grid;gap:12px}
+@media (min-width:768px){.wrongright{grid-template-columns:1fr 1fr}}
+.wr{border-radius:24px;padding:20px 20px 18px}
+.wr.bad{background:var(--pink-soft)}
+.wr.good{background:var(--mint-soft)}
+.wr .tag{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
+.wr.bad .tag{color:#C2185B}
+.wr.good .tag{color:#0E7A55}
+.wr .s{font-size:17px;font-weight:800;line-height:1.35;font-family:'JetBrains Mono',monospace}
+.wr .why{font-size:13.5px;color:var(--ink-2);font-weight:600;margin-top:8px;line-height:1.45}
+
+/* ============ BANDS / ROWS ============ */
+.band{border-radius:var(--r-xl);padding:34px 22px;position:relative;overflow:hidden}
+.band-v{background:var(--lilac)}
+.band-y{background:var(--yellow)}
+.band-p{background:var(--pink)}
+.band-m{background:var(--mint)}
+.band-k{background:var(--ink);color:#fff}
+@media (min-width:768px){.band{padding:56px 50px}}
+.rows{display:grid;gap:12px}
+.row{border-radius:var(--r-lg);padding:24px 20px;background:#F3F2FA;display:grid;gap:10px}
+.row .rhead{display:flex;align-items:center;gap:14px}
+.row .rt{font-size:19px;font-weight:800;letter-spacing:-.02em;line-height:1.2}
+.row .rd{font-size:14px;line-height:1.55;color:var(--ink-2)}
+.row .rd b{color:var(--ink)}
+.row-v{background:var(--lilac)}
+.row-p{background:var(--pink)}
+.row-y{background:var(--yellow)}
+.row-m{background:var(--mint)}
+.ibadge{width:54px;height:54px;border-radius:18px;display:grid;place-items:center;font-size:25px;
+  background:rgba(255,255,255,.62);flex:0 0 auto;transition:transform .5s var(--ease)}
+.row:hover .ibadge{transform:rotate(-8deg) scale(1.06)}
+@media (min-width:820px){
+  .row{grid-template-columns:minmax(210px,.85fr) 1.5fr;gap:32px;padding:32px 38px;align-items:start}
+  .row .rhead{flex-direction:column;align-items:flex-start;gap:14px}
+  .row .rt{font-size:25px}.row .rd{font-size:15px}
+}
+
+/* ============ MARQUEE ============ */
+.mq{overflow:hidden;padding:18px 0;background:var(--ink);color:#fff}
+.mq-in{display:flex;align-items:center;width:max-content;animation:slide 32s linear infinite}
+.mq span{font-family:'Anton',sans-serif;font-size:clamp(26px,6.2vw,48px);line-height:1.08;
+  text-transform:uppercase;padding:0 20px;white-space:nowrap;display:block}
+.mq span:nth-child(even){color:var(--yellow)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ============ STATS ============ */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:24px 18px}
+@media (min-width:900px){.stats{grid-template-columns:repeat(4,1fr);gap:32px}}
+.stat b{font-family:'Anton',sans-serif;font-size:clamp(46px,12.5vw,82px);line-height:.85;display:block}
+.stat:nth-child(odd) b{color:var(--violet-7)}
+.stat:nth-child(even) b{color:var(--pink)}
+.stat .l{font-size:14px;font-weight:800;margin-top:8px}
+.stat .s{font-size:12.5px;color:var(--gray);font-weight:600}
+
+/* ============ CAROUSELS ============ */
+.shots,.revs{display:flex;align-items:flex-start;gap:14px;overflow-x:auto;
+  margin-inline:calc(var(--pad)*-1);padding:4px var(--pad) 18px;
+  scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.shots::-webkit-scrollbar,.revs::-webkit-scrollbar{display:none}
+.shot{flex:0 0 82%;max-width:520px;scroll-snap-align:center;border-radius:24px;overflow:hidden;background:#fff;
+  box-shadow:0 14px 44px rgba(30,15,110,.16)}
+.shot .cap{padding:14px 18px 16px;font-size:13px;font-weight:700}
+.shot .cap i{display:block;font-style:normal;font-weight:600;color:var(--gray);font-size:12px;margin-top:3px}
+.rev{flex:0 0 84%;max-width:430px;scroll-snap-align:center;border-radius:22px;overflow:hidden;background:#1C1C28;
+  box-shadow:0 10px 32px rgba(30,15,110,.18)}
+@media (min-width:768px){.shot{flex:0 0 46%}.rev{flex:0 0 44%}}
+@media (min-width:1200px){.shot{flex:0 0 38%}.rev{flex:0 0 30%}}
+
+/* ============ FAQ ============ */
+.qw{border-radius:var(--r-lg)}
+.q{border-radius:var(--r-lg);padding:20px;width:100%;text-align:left;display:flex;gap:14px;align-items:flex-start;
+  transition:background .35s var(--ease)}
+.q .num{font-family:'Anton',sans-serif;font-size:32px;color:var(--violet-3);line-height:.9;flex:0 0 auto;transition:color .3s}
+.q .qt{flex:1;font-size:17px;font-weight:800;letter-spacing:-.02em;line-height:1.25}
+.q .pm{flex:0 0 auto;font-size:25px;font-weight:300;line-height:1;color:var(--violet-5);transition:transform .35s var(--ease)}
+.qi{max-height:0;overflow:hidden;transition:max-height .5s var(--ease)}
+.qi p{padding:0 20px 22px;font-size:15px;line-height:1.6;color:var(--ink-2)}
+.qw.open{background:var(--lilac)}
+.qw.open .q .num{color:#fff}
+.qw.open .q .pm{transform:rotate(45deg);color:var(--ink)}
+.qw.open .qi{max-height:360px}
+.qw.open .qi p{color:var(--ink)}
+@media (min-width:768px){.q{padding:24px 32px;gap:24px}.q .qt{font-size:21px}.q .num{font-size:44px}
+  .qi p{padding:0 32px 28px 92px;font-size:16px}}
+
+/* ============ PRICE ============ */
+.price-grid{display:grid;gap:14px;margin-top:24px}
+@media (min-width:820px){.price-grid{grid-template-columns:1fr 1fr 1.25fr}}
+.pc{border-radius:30px;padding:24px 22px;display:flex;flex-direction:column;gap:8px;background:#fff}
+.pc .lvl{font-family:'Anton',sans-serif;font-size:28px;text-transform:uppercase}
+.pc .amt{font-family:'Anton',sans-serif;font-size:50px;line-height:.9}
+.pc .note{font-size:13px;color:var(--ink-2);font-weight:600}
+.pc.best{background:var(--yellow);position:relative}
+.pc.best .tagx{position:absolute;top:-12px;right:20px;background:var(--ink);color:#fff;font-size:11px;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;padding:8px 14px;border-radius:999px}
+.pc .old{text-decoration:line-through;opacity:.42;font-family:'Inter';font-size:19px;font-weight:800;margin-left:8px}
+.pc ul{margin-top:8px;display:grid;gap:6px}
+.pc li{font-size:13.5px;font-weight:600;padding-left:20px;position:relative}
+.pc li::before{content:"→";position:absolute;left:0;opacity:.5}
+
+/* ============ FOOTER ============ */
+.foot{background:var(--lilac);border-radius:var(--r-xl) var(--r-xl) 0 0;margin-top:56px;padding:36px 0 0;overflow:hidden}
+.foot-top{display:grid;gap:20px}
+@media (min-width:820px){.foot-top{grid-template-columns:1fr 1fr;align-items:start}}
+.foot a.big{font-size:22px;font-weight:800;color:var(--ink);letter-spacing:-.02em;word-break:break-word}
+.foot .fl{display:flex;flex-wrap:wrap;gap:14px 24px;font-size:14px;font-weight:700}
+.foot-wm{font-family:'Anton',sans-serif;text-transform:uppercase;color:#fff;
+  font-size:clamp(50px,17vw,200px);line-height:.9;letter-spacing:-.02em;margin-top:24px;padding-bottom:8px}
+.foot-wm i{font-style:normal;color:var(--violet-7)}
+.foot-legal{font-size:12px;color:rgba(11,11,18,.55);font-weight:600;padding-bottom:22px}
+
+/* ============ STICKY + FAB ============ */
+.sticky{position:fixed;left:12px;right:12px;bottom:12px;z-index:80;display:flex;gap:10px;align-items:center;
+  justify-content:space-between;background:var(--ink);color:#fff;border-radius:999px;padding:10px 10px 10px 20px;
+  box-shadow:0 12px 36px rgba(11,11,18,.32);transform:translateY(150%);transition:transform .5s var(--ease)}
+.sticky.show{transform:none}
+.sticky .st{font-size:13px;font-weight:700;line-height:1.2}
+.sticky .st i{font-style:normal;display:block;font-size:11px;opacity:.62;font-weight:600}
+.sticky a{background:var(--yellow);color:var(--ink);font-size:13px;font-weight:800;padding:13px 20px;border-radius:999px;white-space:nowrap}
+@media (min-width:940px){.sticky{display:none}}
+
+.fab{position:fixed;left:12px;bottom:74px;z-index:85;display:flex;align-items:center;gap:8px;
+  padding:11px 16px 11px 13px;border-radius:999px;background:#fff;color:var(--ink);font-size:13px;font-weight:800;
+  box-shadow:0 10px 30px rgba(11,11,18,.24);
+  transform:translateY(calc(100% + 90px));opacity:0;pointer-events:none;
+  transition:transform .5s var(--ease),opacity .3s}
+.fab.show{transform:none;opacity:1;pointer-events:auto}
+.fab .nm{max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600;color:var(--gray)}
+@media (min-width:940px){.fab{left:24px;bottom:24px}}
+
+/* ============ SHEET ============ */
+.sheet-bg{position:fixed;inset:0;z-index:100;background:rgba(11,11,18,.52);opacity:0;pointer-events:none;transition:opacity .3s}
+.sheet-bg.open{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:101;max-height:82svh;overflow:auto;background:#fff;
+  border-radius:28px 28px 0 0;padding:10px 20px calc(24px + env(safe-area-inset-bottom));
+  transform:translateY(101%);transition:transform .4s var(--ease)}
+.sheet.open{transform:none}
+@media (min-width:720px){.sheet{left:auto;right:24px;bottom:24px;width:400px;border-radius:26px;max-height:74svh;
+  transform:translateY(calc(100% + 40px))}}
+.sheet .grab{width:44px;height:5px;border-radius:3px;background:#DEDCEC;margin:6px auto 16px}
+.sheet h3{font-size:20px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px}
+.sheet .hint{font-size:13px;color:var(--gray);font-weight:600;margin-bottom:18px}
+.sheet .close{position:absolute;top:16px;right:18px;font-size:24px;line-height:1;color:var(--gray)}
+.vlist{display:grid;gap:8px;margin-bottom:20px}
+.vopt{display:flex;align-items:center;gap:12px;padding:13px 15px;border-radius:16px;background:#F3F2FA;
+  text-align:left;width:100%;transition:background .2s}
+.vopt[aria-checked="true"]{background:var(--yellow)}
+.vopt .tick{width:20px;height:20px;border-radius:50%;flex:0 0 auto;box-shadow:inset 0 0 0 2px rgba(11,11,18,.22);
+  display:grid;place-items:center;font-size:11px}
+.vopt[aria-checked="true"] .tick{background:var(--ink);color:var(--yellow);box-shadow:none}
+.vopt .vn{flex:1;font-size:14.5px;font-weight:700;line-height:1.25}
+.vopt .vl{display:block;font-size:11.5px;font-weight:600;color:var(--gray);margin-top:2px}
+.srow{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.srow label{font-size:13px;font-weight:800}
+.srow input[type=range]{flex:1;accent-color:var(--violet-7)}
+.srow output{font-size:13px;font-weight:700;color:var(--gray);min-width:38px;text-align:right;font-variant-numeric:tabular-nums}
+.sw{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 16px;border-radius:16px;
+  background:#F3F2FA;margin-bottom:14px}
+.sw .lb{font-size:14px;font-weight:700}
+.sw .lb i{display:block;font-style:normal;font-size:12px;font-weight:600;color:var(--gray);margin-top:2px}
+.tgl{width:50px;height:30px;border-radius:999px;background:#D4D2E2;position:relative;flex:0 0 auto;transition:background .25s}
+.tgl::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;
+  transition:transform .25s var(--ease);box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.tgl[aria-checked="true"]{background:var(--violet-7)}
+.tgl[aria-checked="true"]::after{transform:translateX(20px)}
+.novoice{padding:16px;border-radius:16px;background:var(--pink-soft);font-size:13.5px;line-height:1.5;font-weight:600}
+
+/* озвучиваемое */
+.sayable{cursor:pointer}
+.sayable.speaking{outline:3px solid var(--violet-7);outline-offset:3px;border-radius:8px}
+.spk{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;flex:0 0 auto;
+  background:rgba(11,11,18,.08);font-size:14px;transition:transform .25s var(--ease),background .25s}
+.spk:hover{background:rgba(11,11,18,.16);transform:scale(1.08)}
+.spk.speaking{background:var(--ink);color:#fff}
+.satz-foot{display:flex;align-items:center;gap:10px;margin-top:16px;font-size:12.5px;font-weight:700;color:var(--gray)}
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+
+<nav class="nav" id="nav">
+  <a class="brand" href="#top">
+    <img src="assets/logo.png" alt="">
+    <span class="wm">PLATZ<i>ZWEI</i></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#rule">Правило</a></li>
+    <li><a href="#klammer">Рамка</a></li>
+    <li><a href="#neben">Придаточные</a></li>
+    <li><a href="#game">Конструктор</a></li>
+  </ul>
+  <a class="nav-cta" href="https://app.lava.top/801303618?tabId=products&sort=published" target="_blank" rel="noopener">Платформа</a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="ghost2" aria-hidden="true">2</div>
+  <div class="drift" aria-hidden="true">
+    <span class="dw" style="left:57%;top:22%">Ich</span>
+    <span class="dw v" style="left:70%;top:36%;animation-delay:-3s">fahre</span>
+    <span class="dw" style="left:60%;top:52%;animation-delay:-6s">morgen</span>
+    <span class="dw" style="left:76%;top:66%;animation-delay:-9s">nach Berlin</span>
+  </div>
+  <div class="hero-inner">
+    <h1 class="hero-wm" id="heroWm" aria-label="Platz zwei"></h1>
+    <p class="hero-sub">Глагол в немецком предложении стоит на втором месте. Всегда.
+      <b>Разбор порядка слов для тех, кто знает все слова, но собирает их в русском порядке.</b></p>
+    <div class="hero-actions">
+      <a class="btn btn-y" href="#hook">Разобраться</a>
+      <a class="btn btn-ghost" href="#game">Сразу к практике</a>
+    </div>
+    <div class="hero-stats">
+      <div><b>1</b><span>правило в основе</span></div>
+      <div><b>6</b><span>конструкций</span></div>
+      <div><b>4</b><span>задания-конструктора</span></div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Листай</span><i>↓</i></div>
+</header>
+
+<!-- ============ 01 ХУК ============ -->
+<section class="sec" id="hook">
+  <div class="wrap">
+    <div class="story rv">
+      <p>Первый год в Австрии я говорил немецкими словами по русским правилам.</p>
+      <p>Сказал соседу: «Ich morgen komme nicht».</p>
+      <p>Он посмотрел на меня, как на говорящую собаку. Вроде звуки знакомые, а смысл не собирается.</p>
+    </div>
+    <div style="height:26px"></div>
+    <p class="lead rv">
+      Слова были правильные. Все три. <b>Порядок был русский.</b>
+      А немец слушает не слова — он слушает конструкцию. Ему нужно знать, что происходит, уже на втором слове.
+    </p>
+    <div style="height:32px"></div>
+    <h2 class="big-state rv">В русском порядок слов — это свобода.<br><em>В немецком это несущая стена.</em></h2>
+    <div style="height:22px"></div>
+    <p class="lead rv">
+      Хорошая новость: правило одно. Плохая: оно работает всегда, и его надо довести до автоматизма.
+      Дальше — шесть ситуаций, где это правило разворачивается.
+    </p>
+  </div>
+</section>
+
+<div class="mq" aria-hidden="true"><div class="mq-in" id="mq1"></div></div>
+
+<!-- ============ 02 ПРАВИЛО V2 ============ -->
+<section class="sec" id="rule">
+  <div class="wrap">
+    <div class="sh rv"><span class="n">01</span><span class="t">Место номер два забронировано</span></div>
+    <p class="lead rv">
+      В обычном повествовательном предложении <b>спрягаемый глагол стоит на второй позиции</b>.
+      Что окажется на первой — решаешь ты. Всё остальное подвинется. Глагол не подвинется никогда.
+    </p>
+    <div style="height:22px"></div>
+
+    <div class="roles rv">
+      <span class="role v"><i></i>спрягаемый глагол</span>
+      <span class="role s"><i></i>подлежащее</span>
+      <span class="role r"><i></i>остальное</span>
+    </div>
+
+    <p class="mono-label rv">Начни предложение с другого — и посмотри, что будет</p>
+    <div style="height:12px"></div>
+    <div class="variants rv" id="v2Btns" role="group" aria-label="Варианты начала предложения"></div>
+
+    <div class="satz rv-s">
+      <div class="scroller"><div class="parts" id="v2Parts"></div></div>
+      <p class="swipe-hint" style="margin-inline:16px">← листай предложение →</p>
+      <p class="note" id="v2Note"></p>
+      <div class="satz-foot">
+        <button type="button" class="spk" id="v2Spk" aria-label="Произнести предложение">🔊</button>
+        <span>послушать</span>
+      </div>
+    </div>
+
+    <div style="height:26px"></div>
+    <div class="band band-y rv-s">
+      <p class="mono-label" style="color:rgba(11,11,18,.55)">Что реально произошло</p>
+      <div style="height:8px"></div>
+      <p style="font-size:18px;font-weight:700;line-height:1.45">
+        Подлежащее <b>ich</b> ушло за глагол. Это называется <b>инверсия</b>.
+        Не «странное исключение», а прямое следствие правила: место два занято, подлежащему пришлось отойти на третье.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 ПЕРВОЕ МЕСТО ============ -->
+<section class="sec" id="feld" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="sh rv"><span class="n">02</span><span class="t">Первое место — это поле, а не слово</span></div>
+    <p class="lead rv">
+      Главная ошибка новичка: считать позиции по словам. Позиция — это <b>один смысловой блок</b>.
+      «Mit meinem besten Freund» — четыре слова и одна позиция.
+    </p>
+    <div style="height:24px"></div>
+
+    <div class="satz rv-s">
+      <div class="scroller"><div class="parts">
+        <span class="part" style="background:var(--lilac)"><span class="pos">1</span>Mit meinem besten Freund<span class="ru">с моим лучшим другом · 4 слова = 1 место</span></span>
+        <span class="part verb sayable" data-say="Mit meinem besten Freund fahre ich morgen nach Wien."><span class="pos">2</span>fahre<span class="ru">еду</span></span>
+        <span class="part"><span class="pos">3</span>ich<span class="ru">я</span></span>
+        <span class="part"><span class="pos">4</span>morgen<span class="ru">завтра</span></span>
+        <span class="part"><span class="pos">5</span>nach Wien<span class="ru">в Вену</span></span>
+      </div></div>
+    </div>
+
+    <div style="height:22px"></div>
+    <div class="wrongright">
+      <div class="wr bad rv-s">
+        <div class="tag">Так говорят русские</div>
+        <p class="s">Morgen ich fahre nach Wien.</p>
+        <p class="why">Перед глаголом два блока: <b>morgen</b> и <b>ich</b>. Значит глагол оказался на третьем месте. Немец слышит это как сбой.</p>
+      </div>
+      <div class="wr good rv-s">
+        <div class="tag">Так говорят немцы</div>
+        <p class="s sayable" data-say="Morgen fahre ich nach Wien.">Morgen fahre ich nach Wien.</p>
+        <p class="why">Перед глаголом один блок — <b>morgen</b>. Подлежащее ушло направо. Всё на местах.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 РАМКА ============ -->
+<section class="sec" id="klammer">
+  <div class="wrap">
+    <div class="sh rv"><span class="n">03</span><span class="t">Когда глаголов два — они обнимают предложение</span></div>
+    <p class="lead rv">
+      Спрягаемая часть остаётся на месте два. Вторая часть — инфинитив, причастие или приставка —
+      уезжает <b>в самый конец</b>. Между ними всё остальное. Это называется <b>рамочная конструкция</b>, Verbklammer.
+    </p>
+    <div style="height:22px"></div>
+
+    <div class="roles rv">
+      <span class="role v"><i></i>спрягаемая часть · место 2</span>
+      <span class="role v2"><i></i>вторая часть · конец</span>
+    </div>
+
+    <div class="variants rv" id="kBtns" role="group" aria-label="Типы рамки"></div>
+    <div class="satz rv-s">
+      <div class="klammer-wrap">
+        <div class="parts" id="kParts"></div>
+        <div class="klammer" id="kBracket"></div>
+      </div>
+      <p class="klammer-lb" id="kLabel" style="margin-inline:16px">↔ Mittelfeld — всё, что внутри рамки</p>
+      <p class="note" id="kNote"></p>
+      <div class="satz-foot">
+        <button type="button" class="spk" id="kSpk" aria-label="Произнести предложение">🔊</button>
+        <span>послушать</span>
+      </div>
+    </div>
+
+    <div style="height:26px"></div>
+    <div class="band band-v rv-s">
+      <p style="font-size:19px;font-weight:800;line-height:1.4;letter-spacing:-.02em">
+        Немец держит главное слово до конца.
+      </p>
+      <div style="height:10px"></div>
+      <p style="font-size:15px;line-height:1.6;color:var(--ink-2);font-weight:600">
+        «Ich habe gestern mit meinem Bruder über deine Idee…» — и только теперь выяснится, что именно:
+        <b>gesprochen</b> (говорил) или <b>gelacht</b> (смеялся). Поэтому немца надо дослушивать до точки.
+        И поэтому же ты не можешь начать фразу, не зная, чем её закончишь.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 ПРИСТАВКИ ============ -->
+<section class="sec" id="trenn" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="sh rv"><span class="n">04</span><span class="t">Приставка, которая улетает</span></div>
+    <p class="lead rv">
+      У некоторых глаголов приставка отделяется и уходит в конец предложения. В словаре стоит <b>aufstehen</b>,
+      а в речи глагол разрывается пополам. Нажми — увидишь, куда девается «auf».
+    </p>
+    <div style="height:24px"></div>
+
+    <div class="satz rv-s flyzone" id="flyZone">
+      <span class="inf" id="infWord">
+        <span class="pre" id="prePart">auf</span><span class="cut" aria-hidden="true"></span><span class="stem">stehen</span>
+      </span>
+      <p style="font-size:13px;color:var(--gray);font-weight:700;margin:2px 0 18px">вставать · инфинитив в словаре</p>
+
+      <div class="scroller"><div class="parts" id="flyParts">
+        <span class="part"><span class="pos">1</span>Ich<span class="ru">я</span></span>
+        <span class="part verb"><span class="pos">2</span>stehe<span class="ru">стою</span></span>
+        <span class="part"><span class="pos">3</span>um sechs Uhr<span class="ru">в шесть</span></span>
+        <span class="part verb2" id="flyTarget" style="opacity:.18"><span class="pos">4</span>auf<span class="ru">приставка</span></span>
+        <span class="part punct">.</span>
+      </div></div>
+
+      <div class="satz-foot" style="gap:12px">
+        <button type="button" class="replay" id="flyBtn">▶ Запустить приставку</button>
+        <button type="button" class="spk" data-say="Ich stehe um sechs Uhr auf." aria-label="Произнести">🔊</button>
+      </div>
+    </div>
+
+    <div style="height:22px"></div>
+    <div class="plist">
+      <div class="pcol sep rv-s">
+        <h4>Отделяются</h4>
+        <p>Ударение падает на приставку. Она всегда улетает в конец.</p>
+        <div class="ptags" id="sepTags"></div>
+      </div>
+      <div class="pcol insep rv-s">
+        <h4>Не отделяются</h4>
+        <p>Ударение на корне. Эти приставки приросли навсегда.</p>
+        <div class="ptags" id="insepTags"></div>
+      </div>
+    </div>
+    <div style="height:16px"></div>
+    <p class="lead rv" style="font-size:15px">
+      Проверка на слух: скажи слово вслух. <b>ÁUFstehen</b> — ударение на приставке, значит отделяется.
+      <b>verSTÉHen</b> — ударение на корне, значит нет.
+    </p>
+  </div>
+</section>
+
+<!-- ============ 06 ВОПРОСЫ ============ -->
+<section class="sec" id="frage">
+  <div class="wrap">
+    <div class="sh rv"><span class="n">05</span><span class="t">В вопросе глагол прыгает вперёд</span></div>
+    <p class="lead rv">
+      Два типа вопросов — два разных места для глагола. Переключай и смотри, куда он переезжает.
+    </p>
+    <div style="height:20px"></div>
+    <div class="variants rv" id="fBtns" role="group" aria-label="Тип предложения"></div>
+    <div class="satz rv-s">
+      <div class="scroller"><div class="parts" id="fParts"></div></div>
+      <p class="swipe-hint" style="margin-inline:16px">← листай предложение →</p>
+      <p class="note" id="fNote"></p>
+      <div class="satz-foot">
+        <button type="button" class="spk" id="fSpk" aria-label="Произнести">🔊</button>
+        <span>послушать</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 ПРИДАТОЧНЫЕ ============ -->
+<section class="sec" id="neben" style="background:var(--ink);color:#fff">
+  <div class="wrap">
+    <div class="sh rv"><span class="n" style="color:var(--yellow)">06</span><span class="t">Придаточное: глагол уезжает в самый конец</span></div>
+    <p class="lead rv" style="color:#B9B9D2">
+      Стоит поставить <b style="color:#fff">weil</b>, <b style="color:#fff">dass</b>, <b style="color:#fff">wenn</b>,
+      <b style="color:#fff">obwohl</b> или <b style="color:#fff">ob</b> — и правило второго места отменяется.
+      Спрягаемый глагол едет в конец своей части предложения.
+    </p>
+    <div style="height:22px"></div>
+    <div class="variants rv" id="nBtns" role="group" aria-label="Тип предложения"></div>
+    <div class="satz rv-s" style="background:#16161F">
+      <div class="scroller"><div class="parts" id="nParts"></div></div>
+      <p class="swipe-hint" style="margin-inline:16px;color:#6C6C86">← листай предложение →</p>
+      <p class="note" id="nNote" style="color:#B9B9D2;border-color:var(--violet-5)"></p>
+      <div class="satz-foot" style="color:#83839A">
+        <button type="button" class="spk" id="nSpk" aria-label="Произнести" style="background:rgba(255,255,255,.14)">🔊</button>
+        <span>послушать</span>
+      </div>
+    </div>
+
+    <div style="height:24px"></div>
+    <div class="wrongright">
+      <div class="wr bad rv-s">
+        <div class="tag">Ошибка номер один</div>
+        <p class="s">…, weil ich bin krank.</p>
+        <p class="why">Так говорят почти все, кто учит немецкий. И так же говорят сами немцы в разговорной речи — но на экзамене это ошибка.</p>
+      </div>
+      <div class="wr good rv-s">
+        <div class="tag">Как надо</div>
+        <p class="s sayable" data-say="Ich bleibe zu Hause, weil ich krank bin.">…, weil ich krank <b>bin</b>.</p>
+        <p class="why">Глагол <b>bin</b> в самом конце. Запомни ритм: weil → всё остальное → глагол → точка.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 TEKAMOLO ============ -->
+<section class="sec" id="tekamolo">
+  <div class="wrap">
+    <div class="sh rv"><span class="n">07</span><span class="t">Что в каком порядке в середине</span></div>
+    <p class="lead rv">
+      Середину предложения тоже не сваливают в кучу. Порядок по умолчанию —
+      <b>TeKaMoLo</b>: когда → почему → как → куда.
+    </p>
+    <div style="height:22px"></div>
+    <div class="tkml" id="tkml"></div>
+    <div style="height:20px"></div>
+    <div class="satz rv-s">
+      <div class="scroller"><div class="parts">
+        <span class="part"><span class="pos">1</span>Ich</span>
+        <span class="part verb sayable" data-say="Ich fahre morgen wegen der Arbeit mit dem Bus nach Berlin."><span class="pos">2</span>fahre</span>
+        <span class="part" style="background:var(--lilac)"><span class="pos">Te</span>morgen<span class="ru">когда</span></span>
+        <span class="part" style="background:var(--pink-soft)"><span class="pos">Ka</span>wegen der Arbeit<span class="ru">почему</span></span>
+        <span class="part" style="background:var(--yellow-soft)"><span class="pos">Mo</span>mit dem Bus<span class="ru">как</span></span>
+        <span class="part" style="background:var(--mint-soft)"><span class="pos">Lo</span>nach Berlin<span class="ru">куда</span></span>
+        <span class="part punct">.</span>
+      </div></div>
+    </div>
+    <div style="height:16px"></div>
+    <p class="lead rv" style="font-size:15px">
+      Это <b>умолчание, а не закон</b>. Блок можно вынести вперёд, если хочешь на нём акцент —
+      но тогда он занимает первое место, и глагол всё равно остаётся вторым.
+    </p>
+  </div>
+</section>
+
+<!-- ============ 09 КОНСТРУКТОР ============ -->
+<section class="sec" id="game" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="sh rv"><span class="n">08</span><span class="t">Собери предложение сам</span></div>
+    <p class="lead rv">Четыре задания. Тапай слова в правильном порядке. Ошибёшься — скажу, где именно.</p>
+    <div style="height:24px"></div>
+    <div class="game rv-s" id="game">
+      <p class="task" id="gTask">Задание 1 из 4</p>
+      <p class="ru-task" id="gRu"></p>
+      <div class="slotline" id="gSlot"></div>
+      <div class="bank" id="gBank"></div>
+      <div class="game-bar">
+        <button type="button" class="gbtn primary" id="gCheck">Проверить</button>
+        <button type="button" class="gbtn" id="gUndo">Убрать слово</button>
+        <button type="button" class="gbtn" id="gNext" hidden>Дальше →</button>
+        <span class="score" id="gScore">0 / 4</span>
+      </div>
+      <p class="verdict" id="gVerdict"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 ШПАРГАЛКА ============ -->
+<section class="sec" id="cheat">
+  <div class="wrap">
+    <div class="band band-k rv-s">
+      <p class="mono-label" style="color:rgba(255,255,255,.5)">Шпаргалка</p>
+      <div style="height:18px"></div>
+      <ul style="display:grid;gap:14px;font-size:16.5px;font-weight:600;line-height:1.45" id="cheatList"></ul>
+      <div style="height:30px"></div>
+      <p class="disp" style="font-size:clamp(25px,6.6vw,52px);line-height:1.02">
+        Русский порядок слов —<br>это свобода.<br>
+        <span style="color:var(--yellow)">Немецкий — расписание.<br>Опоздал — не поняли.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="mq" aria-hidden="true"><div class="mq-in" id="mq2"></div></div>
+
+<!-- ============ STELLAS ============ -->
+<section class="sec" id="stellas">
+  <div class="wrap">
+    <p class="mono-label rv">Дальше — про мою платформу</p>
+    <div style="height:14px"></div>
+    <h2 class="kicker rv">Понять правило —<br>десять минут.<br><span style="color:var(--violet-7)">Начать так<br>говорить —<br>другая история.</span></h2>
+    <div style="height:28px"></div>
+    <div class="lead rv">
+      <p>Ты только что разобрался с порядком слов. Честно разобрался — правило простое.</p>
+      <p>А теперь представь: через три дня ты открываешь рот в реальном разговоре. Собеседник ждёт. И глагол снова уезжает не туда, потому что <b>голова думает по-русски быстрее, чем ты успеваешь вспомнить правило</b>.</p>
+      <p>Между «я понял» и «я так говорю» лежит не понимание. Лежит сотня повторений. Их нужно где-то взять — и желательно не по одной случайной статье в неделю.</p>
+    </div>
+    <div style="height:28px"></div>
+    <h3 class="big-state rv">Грамматика не разбирается по кусочкам. <em>Она держится только целиком.</em></h3>
+    <div style="height:18px"></div>
+    <p class="lead rv">
+      Порядок слов тянет за собой падежи — потому что в середине предложения Dativ идёт перед Akkusativ.
+      Падежи тянут предлоги. Предлоги тянут склонение прилагательных.
+      Учить это по отдельным постам — то же самое, что собирать пазл, глядя на одну деталь за раз.
+    </p>
+  </div>
+</section>
+
+<section class="sec" style="background:var(--paper-2);padding-block:52px">
+  <div class="wrap">
+    <p class="mono-label rv">Что внутри</p>
+    <div style="height:22px"></div>
+    <div class="stats">
+      <div class="stat rv-s"><b data-count="340" data-suffix="+">0</b><div class="l">гайдов</div><div class="s">от A0 до C1, связаны между собой</div></div>
+      <div class="stat rv-s"><b data-count="7500" data-suffix="+">0</b><div class="l">слов</div><div class="s">с озвучкой и транскрипцией</div></div>
+      <div class="stat rv-s"><b data-count="5" data-suffix="">0</b><div class="l">экзаменов</div><div class="s">Goethe · telc · DTZ · ÖSD · TestDaF</div></div>
+      <div class="stat rv-s"><b data-count="1" data-suffix="">0</b><div class="l">платёж</div><div class="s">не подписка · доступ навсегда</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="inside">
+  <div class="wrap">
+    <div class="sh rv"><span class="n">09</span><span class="t">Как это выглядит внутри</span></div>
+    <p class="lead rv">Платформа собрана в Notion — ставишь их приложение и открываешь материалы <b>без интернета</b>.</p>
+  </div>
+  <div style="height:24px"></div>
+  <div class="wrap">
+    <div class="shots">
+      <figure class="shot rv-s">
+        <video src="assets/video/topic.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <figcaption class="cap">Интерактивные разборы<i>Правило, примеры и проверка в одном экране</i></figcaption>
+      </figure>
+      <figure class="shot rv-s">
+        <video src="assets/video/ai.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <figcaption class="cap">Диалог с ИИ-собеседником<i>Ошибку в порядке слов видно сразу</i></figcaption>
+      </figure>
+      <figure class="shot rv-s">
+        <img src="assets/platform/p3-guide.jpg" alt="Раздел грамматики на платформе" loading="lazy">
+        <figcaption class="cap">Грамматика одним деревом<i>Видно, что с чем связано</i></figcaption>
+      </figure>
+      <figure class="shot rv-s">
+        <video src="assets/video/shop.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <figcaption class="cap">Лексика по ситуациям<i>Магазин, врач, Amt, работа</i></figcaption>
+      </figure>
+      <figure class="shot rv-s">
+        <img src="assets/platform/p6-tracker.jpg" alt="Трекер прогресса" loading="lazy">
+        <figcaption class="cap">Трекер и статистика<i>Видно, где ты сдулся</i></figcaption>
+      </figure>
+      <figure class="shot rv-s">
+        <img src="assets/platform/p1-home.jpg" alt="Главная страница платформы" loading="lazy">
+        <figcaption class="cap">Подборки под уровень<i>Фильмы, книги, подкасты уже отсортированы</i></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sh rv"><span class="n">10</span><span class="t">Почему это доводит до автоматизма</span></div>
+    <div class="rows" id="stRows"></div>
+  </div>
+</section>
+
+<section class="sec" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="sh rv"><span class="n">11</span><span class="t">Что пишут те, кто уже внутри</span></div>
+    <p class="lead rv">Скриншоты из личных сообщений. Как есть, без правок.</p>
+  </div>
+  <div style="height:24px"></div>
+  <div class="wrap">
+    <div class="revs">
+      <div class="rev rv-s"><img src="assets/reviews/r1.jpg" alt="Отзыв о платформе" loading="lazy"></div>
+      <div class="rev rv-s"><img src="assets/reviews/r3.jpg" alt="Отзыв о платформе" loading="lazy"></div>
+      <div class="rev rv-s"><img src="assets/reviews/r2.jpg" alt="Отзыв о платформе" loading="lazy"></div>
+      <div class="rev rv-s"><img src="assets/reviews/r4.jpg" alt="Отзыв о платформе" loading="lazy"></div>
+      <div class="rev rv-s"><img src="assets/reviews/r5.jpg" alt="Отзыв о платформе" loading="lazy"></div>
+      <div class="rev rv-s"><img src="assets/reviews/r6.jpg" alt="Отзыв о платформе" loading="lazy"></div>
+      <div class="rev rv-s"><img src="assets/reviews/r7-cert.jpg" alt="Сертификат студента" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="faq">
+  <div class="wrap">
+    <h2 class="kicker rv" style="margin-bottom:24px">Частые<br>вопросы</h2>
+    <div id="faqBox"></div>
+  </div>
+</section>
+
+<section class="sec" id="price" style="padding-top:0">
+  <div class="wrap">
+    <div class="band band-v rv-s">
+      <p class="mono-label" style="color:rgba(11,11,18,.55)">Цена</p>
+      <div style="height:12px"></div>
+      <h2 class="disp" style="font-size:clamp(30px,8.4vw,68px)">Один платёж.<br>Доступ навсегда.</h2>
+      <div class="price-grid">
+        <div class="pc">
+          <div class="lvl">A0–A2</div><div class="amt">20 €</div>
+          <div class="note">Для тех, кто начинает с нуля</div>
+          <ul><li>Грамматика с азов</li><li>Лексика для быта</li><li>Украинская версия в подарок</li></ul>
+        </div>
+        <div class="pc">
+          <div class="lvl">B1–C1</div><div class="amt">20 €</div>
+          <div class="note">Для тех, кто уже в теме</div>
+          <ul><li>Экзаменационные темы</li><li>Интерактивные мини-приложения</li><li>ИИ-собеседник</li></ul>
+        </div>
+        <div class="pc best">
+          <span class="tagx">выгоднее</span>
+          <div class="lvl">A0–C1</div><div class="amt">30 €<span class="old">40 €</span></div>
+          <div class="note">Обе платформы вместе. Весь путь.</div>
+          <ul><li>340+ гайдов</li><li>7500+ слов с озвучкой</li><li>Раздел экзаменов</li><li>Все обновления бесплатно</li></ul>
+        </div>
+      </div>
+      <div style="height:24px"></div>
+      <a class="btn btn-k btn-lg" href="https://app.lava.top/801303618?tabId=products&sort=published" target="_blank" rel="noopener">Забрать доступ →</a>
+      <div style="height:14px"></div>
+      <p style="font-size:13px;font-weight:600;color:rgba(11,11,18,.6)">
+        Вопросы — в личку <a href="https://t.me/stellasdeutsch" target="_blank" rel="noopener" style="text-decoration:underline">@stellasdeutsch</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="band band-y rv-s" style="text-align:center">
+      <p class="disp" style="font-size:clamp(27px,7.2vw,60px);line-height:1.02;color:rgba(11,11,18,.42)">
+        Правило ты уже знаешь.<br><span style="color:var(--ink)">Осталось<br>перестать думать<br>по-русски.</span>
+      </p>
+      <div style="height:26px"></div>
+      <a class="btn btn-k btn-lg" href="https://app.lava.top/801303618?tabId=products&sort=published" target="_blank" rel="noopener">Начать с A0 →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a class="big" href="https://t.me/stellasdeutsch" target="_blank" rel="noopener">@stellasdeutsch</a>
+        <div style="height:10px"></div>
+        <p style="font-size:14px;font-weight:600;color:rgba(11,11,18,.62)">Немецкий A0–C1 · платформа в Notion</p>
+      </div>
+      <ul class="fl">
+        <li><a href="#rule">Правило</a></li>
+        <li><a href="#klammer">Рамка</a></li>
+        <li><a href="#neben">Придаточные</a></li>
+        <li><a href="#game">Конструктор</a></li>
+        <li><a href="https://app.lava.top/801303618?tabId=products&sort=published" target="_blank" rel="noopener">Купить</a></li>
+      </ul>
+    </div>
+    <div class="foot-wm">PLATZ <i>ZWEI</i></div>
+    <p class="foot-legal">© 2026 Stellas. Материал бесплатный. Забирай и пользуйся.</p>
+  </div>
+</footer>
+
+<button class="fab" id="fab" aria-haspopup="dialog">
+  <span aria-hidden="true">🔊</span><span>Голос</span><span class="nm" id="fabName">—</span>
+</button>
+
+<div class="sheet-bg" id="sheetBg"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+  <div class="grab" aria-hidden="true"></div>
+  <button class="close" id="sheetClose" aria-label="Закрыть">×</button>
+  <h3 id="sheetTitle">Озвучка</h3>
+  <p class="hint">Тапни любое немецкое предложение на странице — услышишь, как оно звучит. Ритм в порядке слов важнее правил.</p>
+  <div id="voiceBox"></div>
+  <div class="srow">
+    <label for="rate">Скорость</label>
+    <input type="range" id="rate" min="0.5" max="1.3" step="0.05" value="0.9">
+    <output id="rateOut">0.90×</output>
+  </div>
+  <div class="sw">
+    <span class="lb">Озвучка по тапу<i>Выключи, если мешает</i></span>
+    <button class="tgl" id="ttsToggle" role="switch" aria-checked="true" aria-label="Озвучка по тапу"></button>
+  </div>
+  <button class="btn btn-y btn-lg" id="testVoice" type="button">Проверить — «Morgen fahre ich nach Wien»</button>
+</div>
+
+<div class="sticky" id="sticky">
+  <div class="st">Платформа A0–C1<i>30 € · доступ навсегда</i></div>
+  <a href="https://app.lava.top/801303618?tabId=products&sort=published" target="_blank" rel="noopener">Забрать</a>
+</div>
+
+<script>
+const $=(s,c=document)=>c.querySelector(s);
+const $$=(s,c=document)=>[...c.querySelectorAll(s)];
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const EASE='cubic-bezier(.16,1,.3,1)';
+const NOFX=/(?:\?|&)nofx\b/.test(location.search);
+if(NOFX) document.documentElement.classList.add('nofx');
+const reduce = NOFX || matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ================= FLIP ================= */
+function flip(container, mutate){
+  const before=new Map();
+  $$('[data-k]',container).forEach(n=>before.set(n.dataset.k, n.getBoundingClientRect()));
+  mutate();
+  if(reduce) return;
+  $$('[data-k]',container).forEach(n=>{
+    const f=before.get(n.dataset.k), l=n.getBoundingClientRect();
+    if(!f){
+      n.animate([{opacity:0,transform:'scale(.75)'},{opacity:1,transform:'none'}],
+        {duration:420,easing:EASE});
+      return;
+    }
+    const dx=f.left-l.left, dy=f.top-l.top;
+    if(Math.abs(dx)>1||Math.abs(dy)>1){
+      n.animate([{transform:`translate(${dx}px,${dy}px)`},{transform:'translate(0,0)'}],
+        {duration:560,easing:EASE});
+    }
+  });
+}
+
+function partHTML(p,i){
+  const cls = p.role==='v' ? 'verb' : p.role==='v2' ? 'verb2' : p.role==='s' ? 'subj' : p.role==='p' ? 'punct' : '';
+  const pos = p.role==='p' ? '' : `<span class="pos">${p.pos!==undefined?p.pos:i}</span>`;
+  const ru  = p.ru ? `<span class="ru">${esc(p.ru)}</span>` : '';
+  return `<span class="part ${cls}" data-k="${esc(p.k)}">${pos}${esc(p.w)}${ru}</span>`;
+}
+function renderParts(host, parts){
+  let n=0;
+  host.innerHTML = parts.map(p=>{ if(p.role!=='p') n++; return partHTML(p, n) }).join('');
+}
+const sentenceOf = parts => parts.map(p=>p.w).join(' ').replace(/\s+([.?!,])/g,'$1');
+
+/* ================= 01 · V2 ================= */
+const V2 = {
+  base:{
+    ich:{k:'ich',w:'Ich',ru:'я',role:'s'},
+    v:{k:'v',w:'fahre',ru:'еду',role:'v'},
+    mo:{k:'mo',w:'morgen',ru:'завтра'},
+    bus:{k:'bus',w:'mit dem Bus',ru:'на автобусе'},
+    ber:{k:'ber',w:'nach Berlin',ru:'в Берлин'},
+    dot:{k:'dot',w:'.',role:'p'}
+  },
+  variants:[
+    {label:'Ich…',   order:['ich','v','mo','bus','ber','dot'],
+     note:'Нейтральный вариант. Подлежащее <b>Ich</b> на первом месте, глагол <b>fahre</b> — на втором.'},
+    {label:'Morgen…', order:['mo','v','ich','bus','ber','dot'],
+     note:'Вперёд вышло <b>morgen</b>. Глагол остался на месте два, а <b>ich</b> отъехало на третье. Это инверсия.'},
+    {label:'Mit dem Bus…', order:['bus','v','ich','mo','ber','dot'],
+     note:'Первое место занял целый блок из трёх слов — <b>mit dem Bus</b>. Всё равно это одна позиция.'},
+    {label:'Nach Berlin…', order:['ber','v','ich','mo','bus','dot'],
+     note:'Куда бы ни переехал акцент, <b>fahre</b> держится за второе место. Оно забронировано.'}
+  ],
+  i:0
+};
+(function(){
+  const btns=$('#v2Btns'), host=$('#v2Parts'), note=$('#v2Note');
+  btns.innerHTML = V2.variants.map((v,i)=>
+    `<button type="button" class="vbtn" data-i="${i}" aria-pressed="${i===0}">${esc(v.label)}</button>`).join('');
+  function draw(i){
+    V2.i=i;
+    const parts=V2.variants[i].order.map(k=>V2.base[k]);
+    flip(host, ()=>renderParts(host, parts));
+    note.innerHTML = V2.variants[i].note;
+    $$('button',btns).forEach(b=>b.setAttribute('aria-pressed', (+b.dataset.i===i)+''));
+    const verb=$('.part.verb',host);
+    if(verb && !reduce){ verb.classList.remove('pulse'); void verb.offsetWidth; verb.classList.add('pulse') }
+  }
+  $$('button',btns).forEach(b=>b.addEventListener('click',()=>draw(+b.dataset.i)));
+  draw(0);
+  $('#v2Spk').addEventListener('click',()=>
+    TTS.say(sentenceOf(V2.variants[V2.i].order.map(k=>V2.base[k])), $('#v2Spk')));
+})();
+
+/* ================= 03 · РАМКА ================= */
+const KL = [
+  {label:'Модальный глагол',
+   parts:[{k:'a',w:'Ich',ru:'я',role:'s'},{k:'b',w:'will',ru:'хочу',role:'v'},
+          {k:'d',w:'nach Berlin',ru:'в Берлин'},
+          {k:'e',w:'fahren',ru:'ехать',role:'v2'},{k:'f',w:'.',role:'p'}],
+   note:'<b>will</b> спрягается и стоит вторым. Инфинитив <b>fahren</b> уезжает в конец. Между ними — всё содержание.'},
+  {label:'Perfekt',
+   parts:[{k:'a',w:'Ich',ru:'я',role:'s'},{k:'b',w:'habe',ru:'вспомогательный',role:'v'},
+          {k:'d',w:'einen Film',ru:'фильм'},
+          {k:'e',w:'gesehen',ru:'смотрел',role:'v2'},{k:'f',w:'.',role:'p'}],
+   note:'В прошедшем времени рамку держат <b>habe</b> и причастие <b>gesehen</b>. Смысл появляется только в конце.'},
+  {label:'Futur',
+   parts:[{k:'a',w:'Ich',ru:'я',role:'s'},{k:'b',w:'werde',ru:'буду',role:'v'},
+          {k:'c',w:'morgen früh',ru:'завтра утром'},{k:'d',w:'aufstehen',ru:'вставать',role:'v2'},
+          {k:'f',w:'.',role:'p'}],
+   note:'В будущем времени <b>werde</b> вторым, инфинитив в конце. Приставка при этом никуда не улетает — глагол целый.'},
+  {label:'Отделяемая приставка',
+   parts:[{k:'a',w:'Ich',ru:'я',role:'s'},{k:'b',w:'stehe',ru:'встаю',role:'v'},
+          {k:'d',w:'um sechs Uhr',ru:'в шесть'},
+          {k:'e',w:'auf',ru:'приставка',role:'v2'},{k:'f',w:'.',role:'p'}],
+   note:'Рамку может держать даже приставка. <b>auf</b> — это половина глагола <b>aufstehen</b>, и она ждёт в конце.'}
+];
+(function(){
+  const btns=$('#kBtns'), host=$('#kParts'), note=$('#kNote'),
+        br=$('#kBracket'), lb=$('#kLabel'), wrap=host.parentElement;
+  let cur=0;
+  btns.innerHTML = KL.map((v,i)=>
+    `<button type="button" class="vbtn" data-i="${i}" aria-pressed="${i===0}">${esc(v.label)}</button>`).join('');
+
+  function place(){
+    const v1=$('.part.verb',host), v2=$('.part.verb2',host);
+    if(!v1||!v2){ br.style.width='0'; return }
+    const wr=wrap.getBoundingClientRect(), a=v1.getBoundingClientRect(), b=v2.getBoundingClientRect();
+    const sl=wrap.scrollLeft;
+    const left=a.left-wr.left+sl, right=b.right-wr.left+sl;
+    const top=Math.max(a.bottom,b.bottom)-wr.top+8;
+    br.style.left=left+'px'; br.style.width=Math.max(0,right-left)+'px'; br.style.top=top+'px';
+  }
+  function draw(i){
+    cur=i;
+    flip(host, ()=>renderParts(host, KL[i].parts));
+    note.innerHTML=KL[i].note;
+    $$('button',btns).forEach(b=>b.setAttribute('aria-pressed',(+b.dataset.i===i)+''));
+    br.classList.remove('on');
+    place();                 // чтение rect само прогоняет layout
+    void br.offsetWidth;     // сброс transition, чтобы анимация проигралась заново
+    br.classList.add('on');
+    lb.classList.add('on');
+  }
+  $$('button',btns).forEach(b=>b.addEventListener('click',()=>draw(+b.dataset.i)));
+  addEventListener('resize',()=>place());
+  wrap.addEventListener('scroll',()=>place(),{passive:true});
+  draw(0);
+  $('#kSpk').addEventListener('click',()=>TTS.say(sentenceOf(KL[cur].parts), $('#kSpk')));
+})();
+
+/* ================= 04 · ПРИСТАВКА ЛЕТИТ ================= */
+(function(){
+  const btn=$('#flyBtn'), pre=$('#prePart'), target=$('#flyTarget');
+  let busy=false;
+  function run(){
+    if(busy) return; busy=true;
+    if(reduce){ target.style.opacity='1'; busy=false; return }
+    // сначала домотать строку до конца — иначе приставка приземлится за кадром
+    const sc=target.closest('.scroller');
+    if(sc && sc.scrollWidth>sc.clientWidth+4){
+      sc.scrollTo({left:sc.scrollWidth, behavior:'smooth'});
+      setTimeout(fly, 520);
+    } else fly();
+  }
+  function fly(){
+    const a=pre.getBoundingClientRect(), b=target.getBoundingClientRect();
+    const g=document.createElement('div');
+    g.className='ghostfly'; g.textContent='auf';
+    g.style.left=a.left+'px'; g.style.top=a.top+'px';
+    g.style.width=a.width+'px'; g.style.height=a.height+'px';
+    g.style.display='grid'; g.style.placeItems='center'; g.style.padding='0';
+    document.body.appendChild(g);
+    pre.style.opacity='0.15';
+    target.style.opacity='0.18';
+    const dx=b.left-a.left, dy=b.top-a.top;
+    const anim=g.animate([
+      {transform:'translate(0,0) rotate(0deg) scale(1)'},
+      {transform:`translate(${dx*.5}px,${dy-70}px) rotate(-14deg) scale(1.12)`, offset:.55},
+      {transform:`translate(${dx}px,${dy}px) rotate(0deg) scale(${b.width/a.width})`}
+    ],{duration:1150,easing:EASE});
+    anim.onfinish=()=>{
+      g.remove(); target.style.opacity='1';
+      target.animate([{transform:'scale(1.16)'},{transform:'scale(1)'}],{duration:380,easing:EASE});
+      setTimeout(()=>{ pre.style.opacity=''; busy=false }, 900);
+    };
+  }
+  btn.addEventListener('click',run);
+  const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ setTimeout(run,500); io.disconnect() } }),{threshold:.4});
+  io.observe($('#flyZone'));
+
+  const SEP=['an-','auf-','aus-','ein-','mit-','vor-','zu-','ab-','nach-','zurück-','weg-','los-'];
+  const INSEP=['be-','ge-','er-','ver-','zer-','ent-','emp-','miss-'];
+  $('#sepTags').innerHTML=SEP.map(t=>`<span class="ptag">${esc(t)}</span>`).join('');
+  $('#insepTags').innerHTML=INSEP.map(t=>`<span class="ptag">${esc(t)}</span>`).join('');
+})();
+
+/* ================= 05 · ВОПРОСЫ ================= */
+const FR=[
+  {label:'Утверждение',
+   parts:[{k:'s',w:'Du',ru:'ты',role:'s'},{k:'v',w:'fährst',ru:'едешь',role:'v'},
+          {k:'m',w:'morgen',ru:'завтра'},{k:'b',w:'nach Berlin',ru:'в Берлин'},{k:'p',w:'.',role:'p'}],
+   note:'Обычное повествование. Глагол <b>fährst</b> на месте два.'},
+  {label:'Ja/Nein-вопрос',
+   parts:[{k:'v',w:'Fährst',ru:'едешь',role:'v'},{k:'s',w:'du',ru:'ты',role:'s'},
+          {k:'m',w:'morgen',ru:'завтра'},{k:'b',w:'nach Berlin',ru:'в Берлин'},{k:'p',w:'?',role:'p'}],
+   note:'Вопрос без вопросительного слова: глагол выходит на <b>первое</b> место. Ответ ожидается «ja» или «nein».'},
+  {label:'W-вопрос',
+   parts:[{k:'w',w:'Wann',ru:'когда'},{k:'v',w:'fährst',ru:'едешь',role:'v'},
+          {k:'s',w:'du',ru:'ты',role:'s'},{k:'b',w:'nach Berlin',ru:'в Берлин'},{k:'p',w:'?',role:'p'}],
+   note:'Вопросительное слово занимает первое место — и глагол снова оказывается вторым. Правило не сломалось.'},
+  {label:'Приказ',
+   parts:[{k:'v',w:'Fahr',ru:'езжай',role:'v'},{k:'m',w:'morgen',ru:'завтра'},
+          {k:'b',w:'nach Berlin',ru:'в Берлин'},{k:'p',w:'!',role:'p'}],
+   note:'Императив: глагол первым, подлежащее исчезает. Коротко и по делу — очень по-немецки.'}
+];
+(function(){
+  const btns=$('#fBtns'), host=$('#fParts'), note=$('#fNote');
+  let cur=0;
+  btns.innerHTML=FR.map((v,i)=>`<button type="button" class="vbtn" data-i="${i}" aria-pressed="${i===0}">${esc(v.label)}</button>`).join('');
+  function draw(i){
+    cur=i;
+    flip(host, ()=>renderParts(host, FR[i].parts));
+    note.innerHTML=FR[i].note;
+    $$('button',btns).forEach(b=>b.setAttribute('aria-pressed',(+b.dataset.i===i)+''));
+    const v=$('.part.verb',host);
+    if(v&&!reduce){ v.classList.remove('pulse'); void v.offsetWidth; v.classList.add('pulse') }
+  }
+  $$('button',btns).forEach(b=>b.addEventListener('click',()=>draw(+b.dataset.i)));
+  draw(0);
+  $('#fSpk').addEventListener('click',()=>TTS.say(sentenceOf(FR[cur].parts), $('#fSpk')));
+})();
+
+/* ================= 06 · ПРИДАТОЧНЫЕ ================= */
+const NB=[
+  {label:'Два простых предложения',
+   parts:[{k:'a',w:'Ich',ru:'я',role:'s'},{k:'b',w:'bleibe',ru:'остаюсь',role:'v'},
+          {k:'c',w:'zu Hause',ru:'дома'},{k:'d',w:'.',role:'p'},
+          {k:'e',w:'Ich',ru:'я',role:'s'},{k:'f',w:'bin',ru:'есть',role:'v'},
+          {k:'g',w:'krank',ru:'больной'},{k:'h',w:'.',role:'p'}],
+   note:'Два самостоятельных предложения. В каждом глагол честно стоит вторым.'},
+  {label:'Соединили через weil',
+   parts:[{k:'a',w:'Ich',ru:'я',role:'s'},{k:'b',w:'bleibe',ru:'остаюсь',role:'v'},
+          {k:'c',w:'zu Hause',ru:'дома'},{k:'x',w:', weil',ru:'потому что'},
+          {k:'e',w:'ich',ru:'я',role:'s'},{k:'g',w:'krank',ru:'больной'},
+          {k:'f',w:'bin',ru:'есть',role:'v'},{k:'h',w:'.',role:'p'}],
+   note:'Смотри на <b>bin</b>: оно переехало в самый конец. <b>weil</b> отправляет глагол в хвост своей части.'},
+  {label:'Придаточное вперёд',
+   parts:[{k:'x',w:'Weil',ru:'потому что'},{k:'e',w:'ich',ru:'я',role:'s'},
+          {k:'g',w:'krank',ru:'больной'},{k:'f',w:'bin',ru:'есть',role:'v'},
+          {k:'y',w:',',role:'p'},{k:'b',w:'bleibe',ru:'остаюсь',role:'v'},
+          {k:'a',w:'ich',ru:'я',role:'s'},{k:'c',w:'zu Hause',ru:'дома'},{k:'h',w:'.',role:'p'}],
+   note:'Всё придаточное встало на первое место главного. Значит <b>bleibe</b> обязано идти сразу за запятой. Два глагола встречаются в середине — немцы зовут это «поцелуй глаголов».'}
+];
+(function(){
+  const btns=$('#nBtns'), host=$('#nParts'), note=$('#nNote');
+  let cur=0;
+  btns.innerHTML=NB.map((v,i)=>`<button type="button" class="vbtn" data-i="${i}" aria-pressed="${i===0}">${esc(v.label)}</button>`).join('');
+  function draw(i){
+    cur=i;
+    flip(host, ()=>renderParts(host, NB[i].parts));
+    note.innerHTML=NB[i].note;
+    $$('button',btns).forEach(b=>b.setAttribute('aria-pressed',(+b.dataset.i===i)+''));
+  }
+  $$('button',btns).forEach(b=>b.addEventListener('click',()=>draw(+b.dataset.i)));
+  draw(0);
+  $('#nSpk').addEventListener('click',()=>TTS.say(sentenceOf(NB[cur].parts).replace(/\s,/g,','), $('#nSpk')));
+})();
+
+/* ================= 07 · TEKAMOLO ================= */
+const TK=[
+  ['Te','Temporal','Когда?','morgen','завтра'],
+  ['Ka','Kausal','Почему?','wegen der Arbeit','из-за работы'],
+  ['Mo','Modal','Как?','mit dem Bus','на автобусе'],
+  ['Lo','Lokal','Куда? Где?','nach Berlin','в Берлин']
+];
+$('#tkml').innerHTML=TK.map(([l,n,q,ex,ru])=>`
+  <div class="tk rv-s">
+    <div class="letter">${l}</div>
+    <div class="q">${esc(q)}<span style="display:block;font-size:11px;font-weight:700;color:var(--gray);letter-spacing:.1em;text-transform:uppercase;margin-top:3px">${esc(n)}</span></div>
+    <div class="ex">${esc(ex)}</div>
+    <div class="ru">${esc(ru)}</div>
+  </div>`).join('');
+
+/* ================= 08 · КОНСТРУКТОР ================= */
+const TASKS=[
+  {ru:'Завтра я еду на автобусе в Берлин.',
+   words:['Morgen','fahre','ich','mit dem Bus','nach Berlin'],
+   verb:'fahre',
+   tip:'Начинаешь с «Morgen» — значит это первое место. Что обязано идти сразу после?'},
+  {ru:'Я хочу завтра поехать в Берлин.',
+   words:['Ich','will','morgen','nach Berlin','fahren'],
+   verb:'will',
+   tip:'Два глагола — рамка. Спрягаемый на месте два, инфинитив в самый конец.'},
+  {ru:'Я встаю каждый день в шесть.',
+   words:['Ich','stehe','jeden Tag','um sechs Uhr','auf'],
+   verb:'stehe',
+   tip:'Глагол aufstehen отделяемый. Куда девается «auf»?'},
+  {ru:'Я остаюсь дома, потому что я болен.',
+   words:['Ich','bleibe','zu Hause,','weil','ich','krank','bin'],
+   verb:'bleibe',
+   tip:'После «weil» глагол уезжает в самый конец придаточного.'}
+];
+(function(){
+  const slot=$('#gSlot'), bank=$('#gBank'), verdict=$('#gVerdict'),
+        ru=$('#gRu'), task=$('#gTask'), score=$('#gScore'),
+        bCheck=$('#gCheck'), bUndo=$('#gUndo'), bNext=$('#gNext');
+  let idx=0, placed=[], solved=0, done=false;
+
+  const shuffle=a=>{ const r=a.slice(); for(let i=r.length-1;i>0;i--){ const j=(i*7+3)%(i+1); [r[i],r[j]]=[r[j],r[i]] } return r };
+
+  function render(){
+    const t=TASKS[idx];
+    task.textContent=`Задание ${idx+1} из ${TASKS.length}`;
+    ru.textContent=t.ru;
+    score.textContent=`${solved} / ${TASKS.length}`;
+    slot.className = done ? 'slotline ok' : 'slotline';
+    slot.innerHTML=placed.map((w,i)=>
+      `<button type="button" class="wchip inslot ${w===t.verb?'isverb':''}" data-p="${i}">${esc(w)}</button>`).join('')
+      || '<span style="color:#6C6C86;font-size:14px;font-weight:700;padding:0 6px">Тапай слова снизу</span>';
+    bank.innerHTML=shuffle(t.words).map(w=>
+      `<button type="button" class="wchip ${placed.includes(w)?'used':''}" data-w="${esc(w)}">${esc(w)}</button>`).join('');
+    bNext.hidden = !done;
+    bCheck.hidden = done;
+  }
+
+  bank.addEventListener('click',e=>{
+    const b=e.target.closest('.wchip'); if(!b||done) return;
+    placed.push(b.dataset.w); verdict.textContent=''; verdict.className='verdict'; render();
+  });
+  slot.addEventListener('click',e=>{
+    const b=e.target.closest('.wchip'); if(!b||done) return;
+    placed.splice(+b.dataset.p,1); render();
+  });
+  bUndo.addEventListener('click',()=>{ if(done) return; placed.pop(); render() });
+
+  bCheck.addEventListener('click',()=>{
+    const t=TASKS[idx];
+    if(placed.length<t.words.length){
+      verdict.className='verdict bad';
+      verdict.textContent=`Использованы не все слова: ${placed.length} из ${t.words.length}.`;
+      return;
+    }
+    const ok = placed.every((w,i)=>w===t.words[i]);
+    if(ok){
+      done=true; solved++;
+      slot.className='slotline ok';
+      verdict.className='verdict good';
+      verdict.textContent='Верно. Именно так это и звучит.';
+      TTS.say(t.words.join(' ').replace(/\s+([.,])/g,'$1'));
+    }else{
+      const bad=placed.findIndex((w,i)=>w!==t.words[i]);
+      slot.className='slotline bad';
+      setTimeout(()=>slot.className='slotline',480);
+      verdict.className='verdict bad';
+      verdict.innerHTML=`Сбой на позиции <b>${bad+1}</b> — там стоит «${esc(placed[bad])}». ${esc(t.tip)}`;
+    }
+    render();
+  });
+
+  bNext.addEventListener('click',()=>{
+    if(idx<TASKS.length-1){ idx++; placed=[]; done=false; verdict.textContent=''; verdict.className='verdict'; render() }
+    else{
+      verdict.className='verdict good';
+      verdict.innerHTML=`Все четыре собраны. Правило ты понял — осталось довести до автоматизма, а это уже про количество повторений.`;
+      bNext.hidden=true;
+    }
+  });
+  render();
+})();
+
+/* ================= ШПАРГАЛКА / MARQUEE / ROWS / FAQ ================= */
+const CHEAT=[
+  ['Повествование','глагол на месте <b>2</b>'],
+  ['Ja/Nein-вопрос','глагол на месте <b>1</b>'],
+  ['W-вопрос','вопросительное слово 1, глагол <b>2</b>'],
+  ['Приказ','глагол на месте <b>1</b>'],
+  ['Два глагола','рамка: спрягаемый <b>2</b>, второй — <b>в конец</b>'],
+  ['weil · dass · wenn · ob','глагол <b>в самый конец</b>']
+];
+$('#cheatList').innerHTML=CHEAT.map(([a,b])=>
+  `<li><b style="color:var(--yellow)">${esc(a)}</b> → ${b}</li>`).join('');
+
+const MQ1=['Platz zwei','Verbklammer','Inversion','Nebensatz','TeKaMoLo','trennbar'];
+const MQ2=['A0 → C1','340+ Guides','ohne Abo','offline','Stellas','Platz zwei'];
+const mq=(el,arr)=>{ el.setAttribute('aria-hidden','true');
+  el.innerHTML=(arr.map(w=>`<span>${esc(w)}</span><span>✦</span>`).join('')).repeat(2) };
+mq($('#mq1'),MQ1); mq($('#mq2'),MQ2);
+
+const ST_ROWS=[
+  ['row-v','🧩','Грамматика как система, а не как лента постов','Порядок слов, падежи, предлоги и склонения лежат в одном дереве и ссылаются друг на друга. Видно, <b>почему</b> Dativ идёт перед Akkusativ и что от чего зависит. Отдельный пост этого дать не может.'],
+  ['row-y','🔁','Упражнение сразу после правила','К каждому гайду — практика с ответами и разбором, <b>почему ответ такой</b>. Не галочка «неверно», а объяснение, какое именно место занял глагол и почему это сломало фразу.'],
+  ['row-m','🤖','ИИ-собеседник вместо страха','Пишешь по-немецки, он отвечает в образе — строгий начальник, дружелюбный сосед, придирчивый экзаменатор. <b>Ошибку в порядке слов видно сразу</b>, и никто не смотрит на тебя как на говорящую собаку.'],
+  ['row-p','🎧','7500+ слов с озвучкой','Порядок слов слышен. Когда ты слушаешь достаточно немецкой речи, правильная конструкция начинает <b>звучать правильно</b> — и правило вспоминать уже не нужно.'],
+  ['row-v','📴','Работает офлайн','Notion ставится на телефон. Пять минут в очереди — пять минут немецкого. Именно из таких кусков и набирается та самая сотня повторений.'],
+  ['row-y','♾️','Один платёж вместо подписки','Заплатил один раз — заходишь через год, два, пять. Все обновления, которые я выкачу потом, у тебя уже оплачены.']
+];
+$('#stRows').innerHTML=ST_ROWS.map(([cls,icon,t,d])=>`
+  <div class="row ${cls} rv-s">
+    <div class="rhead"><span class="ibadge" aria-hidden="true">${icon}</span><div class="rt">${esc(t)}</div></div>
+    <div class="rd">${d}</div>
+  </div>`).join('');
+
+const FAQ=[
+  ['Это подписка?','Нет. Один платёж — доступ навсегда. Никаких ежемесячных списаний.'],
+  ['Я вообще ноль. Мне подойдёт?','Да. Есть уровень A0 — начинаешь с алфавита и первых конструкций.'],
+  ['Работает без интернета?','Да. Платформа собрана в Notion — ставишь их приложение на телефон или ноутбук и открываешь материалы офлайн.'],
+  ['Я уже на B2. Что мне там делать?','Открывать платформу B1–C1: экзаменационные темы для TestDaF, Goethe C1 и telc, интерактивные приложения, аутентичные тексты и ИИ-практика.'],
+  ['Обновления платные?','Нет. Купил один раз — все дальнейшие обновления и новые разделы приходят бесплатно.'],
+  ['Как получить доступ после оплаты?','Оплачиваешь по ссылке и получаешь доступ. Если что-то пошло не так — пиши в личку @stellasdeutsch.']
+];
+$('#faqBox').innerHTML=FAQ.map(([q,a],i)=>`
+  <div class="qw rv">
+    <button class="q" aria-expanded="false">
+      <span class="num">${String(i+1).padStart(2,'0')}</span>
+      <span class="qt">${esc(q)}</span><span class="pm">+</span>
+    </button>
+    <div class="qi"><p>${esc(a)}</p></div>
+  </div>`).join('');
+$$('#faqBox .q').forEach(b=>b.addEventListener('click',()=>{
+  const w=b.parentElement, open=w.classList.contains('open');
+  $$('#faqBox .qw').forEach(x=>{x.classList.remove('open');x.querySelector('.q').setAttribute('aria-expanded','false')});
+  if(!open){ w.classList.add('open'); b.setAttribute('aria-expanded','true') }
+}));
+
+/* ================= HERO WORDMARK ================= */
+(function(){
+  const el=$('#heroWm'); let i=0;
+  [['PLATZ',''],['ZWEI','y']].forEach(([w,cls])=>{
+    const g=document.createElement('span');
+    g.style.display='inline-flex'; if(cls) g.className=cls;
+    [...w].forEach(ch=>{
+      const s=document.createElement('span');
+      s.textContent=ch; s.style.animationDelay=(0.05*i+0.15)+'s'; i++;
+      g.appendChild(s);
+    });
+    el.appendChild(g);
+  });
+})();
+
+/* ================= OBSERVERS ================= */
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target) } });
+},{threshold:.12, rootMargin:'0px 0px -8% 0px'});
+if(NOFX){
+  $$('.rv,.rv-s').forEach(el=>el.classList.add('in'));
+  $$('[data-count]').forEach(el=>el.textContent=(+el.dataset.count).toLocaleString('ru-RU')+(el.dataset.suffix||''));
+}
+$$('.rv,.rv-s').forEach(el=>io.observe(el));
+
+const stagIO=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting) return;
+    $$('.rv-s',e.target).forEach((c,i)=>setTimeout(()=>c.classList.add('in'), reduce?0:i*85));
+    stagIO.unobserve(e.target);
+  });
+},{threshold:.05});
+$$('.rows,.shots,.revs,.stats,.tkml,.plist,.wrongright').forEach(el=>stagIO.observe(el));
+
+const cIO=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting) return;
+    const el=e.target, target=+el.dataset.count, suf=el.dataset.suffix||'';
+    if(reduce){ el.textContent=target.toLocaleString('ru-RU')+suf; cIO.unobserve(el); return }
+    const t0=performance.now(), dur=1500;
+    (function step(t){
+      const p=Math.min(1,(t-t0)/dur), e2=1-Math.pow(1-p,3);
+      el.textContent=Math.round(target*e2).toLocaleString('ru-RU')+(p===1?suf:'');
+      if(p<1) requestAnimationFrame(step);
+    })(performance.now());
+    cIO.unobserve(el);
+  });
+},{threshold:.5});
+$$('[data-count]').forEach(el=>cIO.observe(el));
+
+/* ================= TTS ================= */
+const TTS=(function(){
+  const synth=window.speechSynthesis;
+  const supported=!!synth && typeof SpeechSynthesisUtterance==='function';
+  const store={
+    get(k,d){ try{ const v=localStorage.getItem('stellas.'+k); return v===null?d:v }catch(e){ return d } },
+    set(k,v){ try{ localStorage.setItem('stellas.'+k,v) }catch(e){} }
+  };
+  let voices=[], current=null, cur$=null;
+  let rate=parseFloat(store.get('rate','0.9'))||0.9;
+  let enabled=store.get('tts','1')!=='0';
+  const wantURI=store.get('voiceURI','');
+
+  function loadVoices(){
+    if(!supported) return;
+    const all=synth.getVoices()||[];
+    const de=all.filter(v=>/^de(-|_|$)/i.test(v.lang));
+    voices=de.length?de:all.filter(v=>/^en(-|_|$)/i.test(v.lang)).slice(0,3);
+    voices.sort((a,b)=>(a.localService===b.localService)?a.name.localeCompare(b.name):(a.localService?-1:1));
+    current=voices.find(v=>v.voiceURI===wantURI)||voices.find(v=>/^de-DE/i.test(v.lang))||voices[0]||null;
+    render();
+  }
+  function stop(){ if(supported) try{ synth.cancel() }catch(e){}
+    if(cur$){ cur$.classList.remove('speaking'); cur$=null } }
+  function say(text, el){
+    if(!supported||!enabled||!text) return;
+    stop();
+    const u=new SpeechSynthesisUtterance(text);
+    if(current){ u.voice=current; u.lang=current.lang } else u.lang='de-DE';
+    u.rate=rate; u.pitch=1;
+    if(el){ cur$=el; el.classList.add('speaking') }
+    u.onend=u.onerror=()=>{ if(el) el.classList.remove('speaking'); if(cur$===el) cur$=null };
+    try{ synth.speak(u) }catch(e){}
+  }
+
+  const fab=$('#fab'), fabName=$('#fabName'), sheet=$('#sheet'), bg=$('#sheetBg'), box=$('#voiceBox');
+  const short=v=>!v?'—':v.name.replace(/\s*\((.*?)\)\s*/g,' ').replace(/Microsoft |Google |Apple /,'').trim().split(/[\s,]/)[0];
+
+  function render(){
+    if(!box) return;
+    fabName.textContent=supported?short(current):'нет';
+    if(!supported){
+      box.innerHTML='<div class="novoice"><b>Браузер не умеет озвучивать текст.</b><br>Открой страницу в Safari, Chrome или Edge.</div>';
+      return;
+    }
+    if(!voices.length){
+      box.innerHTML='<div class="novoice"><b>Немецкий голос не найден в системе.</b><br>'+
+        'iPhone: Настройки → Универсальный доступ → Устный контент → Голоса → Deutsch.<br>'+
+        'Mac: Системные настройки → Универсальный доступ → Устный контент → Управление голосами.<br>'+
+        'Windows: Параметры → Время и язык → Речь → Добавить голоса.</div>';
+      return;
+    }
+    box.innerHTML='<div class="vlist" role="radiogroup" aria-label="Голос">'+voices.map((v,i)=>`
+      <button type="button" class="vopt" role="radio" data-i="${i}" aria-checked="${v===current?'true':'false'}">
+        <span class="tick" aria-hidden="true">${v===current?'✓':''}</span>
+        <span class="vn">${esc(short(v))}<span class="vl">${esc(v.name)} · ${esc(v.lang)}${v.localService?' · офлайн':''}</span></span>
+        <span aria-hidden="true" style="opacity:.5">▶</span>
+      </button>`).join('')+'</div>';
+    $$('.vopt',box).forEach(b=>b.addEventListener('click',()=>{
+      current=voices[+b.dataset.i]; store.set('voiceURI',current.voiceURI);
+      render(); say('Morgen fahre ich nach Wien.');
+    }));
+  }
+
+  if(fab){
+    const open=()=>{ bg.classList.add('open'); sheet.classList.add('open') };
+    const close=()=>{ bg.classList.remove('open'); sheet.classList.remove('open'); stop() };
+    fab.addEventListener('click',open);
+    bg.addEventListener('click',close);
+    $('#sheetClose').addEventListener('click',close);
+    addEventListener('keydown',e=>{ if(e.key==='Escape') close() });
+
+    const r=$('#rate'), ro=$('#rateOut');
+    r.value=rate; ro.textContent=rate.toFixed(2)+'×';
+    r.addEventListener('input',()=>{ rate=parseFloat(r.value); ro.textContent=rate.toFixed(2)+'×'; store.set('rate',rate) });
+    r.addEventListener('change',()=>say('Morgen fahre ich nach Wien.'));
+
+    const tg=$('#ttsToggle');
+    const paint=()=>tg.setAttribute('aria-checked', enabled?'true':'false'); paint();
+    tg.addEventListener('click',()=>{ enabled=!enabled; store.set('tts',enabled?'1':'0'); paint(); if(!enabled) stop() });
+    $('#testVoice').addEventListener('click',()=>say('Morgen fahre ich nach Wien.'));
+  }
+
+  document.addEventListener('click',e=>{
+    const t=e.target.closest('[data-say]'); if(!t) return;
+    say(t.dataset.say,t);
+  });
+
+  if(supported){
+    loadVoices();
+    if(typeof synth.addEventListener==='function') synth.addEventListener('voiceschanged',loadVoices);
+    else synth.onvoiceschanged=loadVoices;
+    setTimeout(loadVoices,400);
+    addEventListener('pagehide',stop);
+  } else render();
+
+  return { say, stop };
+})();
+
+/* ================= NAV / STICKY / PROGRESS ================= */
+(function(){
+  const bar=$('#prog');
+  const upd=()=>{ const h=document.documentElement.scrollHeight-innerHeight;
+    bar.style.width=(h>0?(scrollY/h)*100:0)+'%' };
+  addEventListener('scroll',upd,{passive:true}); addEventListener('resize',upd); upd();
+})();
+
+let lastY=0;
+const nav=$('#nav'), sticky=$('#sticky'), fabEl=$('#fab'), hookTop=()=>$('#hook').offsetTop;
+addEventListener('scroll',()=>{
+  const y=scrollY;
+  nav.classList.toggle('hide', y>lastY && y>240);
+  const past=y>hookTop()+200;
+  sticky.classList.toggle('show',past);
+  fabEl.classList.toggle('show',past);
+  lastY=y;
+},{passive:true});
+
+$$('a[href^="#"]').forEach(a=>a.addEventListener('click',ev=>{
+  const t=document.querySelector(a.getAttribute('href')); if(!t) return;
+  ev.preventDefault(); t.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+}));
+
+if(!reduce){
+  const g=$('.ghost2'), wm=$('#heroWm');
+  addEventListener('scroll',()=>{
+    const y=Math.min(scrollY,900);
+    g.style.transform=`translateY(${y*.24}px)`;
+    wm.style.transform=`translateY(${y*-.06}px)`;
+  },{passive:true});
+}
+</script>
+</body>
+</html>
